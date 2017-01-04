@@ -1,3 +1,7 @@
+## Pigeon
+
+Swift-like programming language using LLVM
+
 ## Developing with Xcode
 
 First, install `llvm` and `cmake`.
