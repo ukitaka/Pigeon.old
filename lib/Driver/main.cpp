@@ -1,17 +1,15 @@
 #include <iostream>
 #include <string>
 #include "llvm/ADT/StringSwitch.h"
+#include "pigeon/Parse/lexer.hpp"
 
 using namespace std;
 
 int main() {
-    string str = "func";
-    int i = llvm::StringSwitch<int>(str)
-    .Case("func", 4)
-    .Case("class", 2)
-    .Default(3);
+    auto lexer = new pigeon::Lexer();
 
-    cout << "hello world!!!" << endl;
-    cout << i << endl;
+    lexer->test();
+
     return 0;
 }
+

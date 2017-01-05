@@ -65,4 +65,4 @@ xcuserdata/
 *.xcscmblueprint
 
 ## pigeon
-xcode
+build

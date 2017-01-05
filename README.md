@@ -2,7 +2,7 @@
 
 Swift-like programming language using LLVM
 
-## Developing with Xcode
+## Developing in Xcode
 
 First, install `llvm` and `cmake`.
 
@@ -17,11 +17,11 @@ Clone `Pigeon` repository
 $ git clone https://github.com/ukitaka/Pigeon.git
 ```
 
-Make `xcode` dir and run `cmake`, and finally you can use `pigeon.xcodeproj`.
+Make `build` dir and run `cmake`, and finally you can use `pigeon.xcodeproj`.
 
 ```
-$ mkdir xcode
-$ cd xcode
+$ mkdir build
+$ cd build
 $ cmake .. -G "Xcode"
 $ open pigeon.xcodeproj
 ```
