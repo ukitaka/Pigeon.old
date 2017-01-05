@@ -1,2 +1,2 @@
-add_subdirectory(Parser)
+add_subdirectory(Parse)
 add_subdirectory(Driver)
