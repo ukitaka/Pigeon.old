@@ -5,6 +5,16 @@
 #include <stdlib.h>
 
 namespace pigeon {
+
+    enum class tok {
+        unknown = 0,
+        identifier,
+        oper_binary_unspaced,
+        oper_binary_spaced,
+        integer_literal,
+        NUM_TOKENS
+    };
+    
     class Lexer {
         public:
             void test();
