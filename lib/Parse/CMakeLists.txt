@@ -6,6 +6,6 @@ file( GLOB HEADERS
 
 add_pigeon_library(NAME "pigeonParser"
     SRCS ${SRCS} ${HEADERS}
-    LINK_LIBRARIES LLVMCore
+    LINK_LIBRARIES LLVMCore pigeonBasic
 )
 

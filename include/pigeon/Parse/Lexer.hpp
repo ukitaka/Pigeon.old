@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <stdlib.h>
+#include "pigeon/Basic/SourceLoc.hpp"
 
 namespace pigeon {
 
