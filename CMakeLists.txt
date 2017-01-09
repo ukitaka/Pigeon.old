@@ -9,7 +9,7 @@ execute_process (COMMAND
     OUTPUT_VARIABLE CXXFLAGS_)
 
 execute_process (COMMAND 
-    llvm-config --ldflags 
+    llvm-config --ldflags --system-libs 
     OUTPUT_VARIABLE LINKER_FLAGS_)
 
 string (REPLACE "\n" " " CXXFLAGS ${CXXFLAGS_})
