@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <string>
 #include "llvm/ADT/StringSwitch.h"
+#include "llvm/Support/SourceMgr.h"
+#include "llvm/Support/MemoryBuffer.h"
 #include "pigeon/Parse/lexer.hpp"
 
 void pigeon::Lexer::test() {
