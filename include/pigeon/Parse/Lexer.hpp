@@ -37,7 +37,6 @@ namespace pigeon {
         Lexer(unsigned BufferID, llvm::SourceMgr &SM);
         
         void Lex(Token &Result);
-        void test();
     };
 }
 
