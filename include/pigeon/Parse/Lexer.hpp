@@ -23,7 +23,7 @@ namespace pigeon {
         NUM_TOKENS
     };
 
-    class Token;
+    class Token {};
     
     class Lexer {
         llvm::SourceMgr &SourceMgr;
