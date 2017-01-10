@@ -40,4 +40,4 @@ namespace pigeon {
     };
 }
 
-#endif
+#endif /* PIGEON_PARSE_LEXER_H */
