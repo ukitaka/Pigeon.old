@@ -7,14 +7,16 @@
 #include "llvm/Support/SMLoc.h"
 
 using namespace std;
-//using namespace llvm;
 
 int main() {
     llvm::SourceMgr SourceMgr;
     const char *source = "1+2\n";
     unique_ptr<llvm::MemoryBuffer> buf = llvm::MemoryBuffer::getMemBuffer(source);
-    unsigned mainFileID = SourceMgr.AddNewSourceBuffer(std::move(buf), llvm::SMLoc());
-    printf("%2d\n", mainFileID);
+    unsigned mainBufferID = SourceMgr.AddNewSourceBuffer(std::move(buf), llvm::SMLoc());
+    auto lexer = new pigeon::Lexer(mainBufferID, SourceMgr);
+
+    pigeon::Token token;
+    lexer->Lex(token);
 
     return 0;
 }
