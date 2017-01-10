@@ -13,10 +13,14 @@ int main() {
     const char *source = "1+2\n";
     unique_ptr<llvm::MemoryBuffer> buf = llvm::MemoryBuffer::getMemBuffer(source);
     unsigned mainBufferID = SourceMgr.AddNewSourceBuffer(std::move(buf), llvm::SMLoc());
-    auto lexer = new pigeon::Lexer(mainBufferID, SourceMgr);
+    pigeon::Lexer lexer(mainBufferID, SourceMgr);
 
     pigeon::Token token;
-    lexer->Lex(token);
+
+    while (!token.isEOF()) {
+        lexer.Lex(token);
+        std::cout << std::string(token.getText()) << std::endl;
+    }
 
     return 0;
 }

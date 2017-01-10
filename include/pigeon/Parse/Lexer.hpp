@@ -4,6 +4,7 @@
 #include <iostream>
 #include <stdlib.h>
 #include "pigeon/Basic/SourceLoc.hpp"
+#include "pigeon/Parse/Token.hpp"
 
 namespace llvm {
     class MemoryBuffer;
@@ -12,19 +13,6 @@ namespace llvm {
 
 namespace pigeon {
 
-    enum class tok {
-        unknown = 0,
-        identifier,
-        kw_int,
-        kw_var,
-        oper_binary_unspaced,
-        oper_binary_spaced,
-        integer_literal,
-        NUM_TOKENS
-    };
-
-    class Token {};
-    
     class Lexer {
         llvm::SourceMgr &SourceMgr;
         const llvm::MemoryBuffer *Buffer;
@@ -33,10 +21,16 @@ namespace pigeon {
         Lexer(const Lexer&);
         void operator=(const Lexer&);
         
-        public:
+    public:
         Lexer(unsigned BufferID, llvm::SourceMgr &SM);
-        
         void Lex(Token &Result);
+
+    private:
+        void Warning(const char* Loc, const char* Message);
+        void Error(const char* Loc, const char* Message);
+        void FormToken(tok token, const char *TokStart, Token& Result);
+
+        void LexDigit(Token &Result);
     };
 }
 
