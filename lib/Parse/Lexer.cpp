@@ -6,14 +6,13 @@
 #include "llvm/Support/MemoryBuffer.h"
 #include "pigeon/Parse/lexer.hpp"
 
-void pigeon::Lexer::test() {
-    std::cout << "test!! OK!!" << std::endl;
-    std::string str = "func";
-    int i = llvm::StringSwitch<int>(str)
-    .Case("func", 1)
-    .Case("class", 2)
-    .Default(3);
+pigeon::Lexer::Lexer(unsigned BufferID, llvm::SourceMgr &SM) : SourceMgr(SM) {
+  Buffer = SM.getMemoryBuffer(BufferID);
+  CurPtr = Buffer->getBufferStart();
+}
 
-    std::cout << "hello world!!!" << std::endl;
-    std::cout << i << std::endl;
+void pigeon::Lexer::Lex(Token &Result) {
+    assert(CurPtr >= Buffer->getBufferStart() &&
+           CurPtr <= Buffer->getBufferEnd() && "Cur Char Pointer out of range!");
+    std::cout << "OK" << std::endl;
 }
