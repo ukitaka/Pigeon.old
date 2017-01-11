@@ -28,9 +28,6 @@ int main() {
   return 0;
 }
 
-
-
-
 string kindString(pigeon::tok Kind) {
     switch (Kind) {
         case pigeon::tok::unknown:
