@@ -30,6 +30,7 @@ private:
   void error(const char *Loc, const char *Message);
   void formToken(tok token, const char *TokStart, Token &Result);
 
+  static tok kindOfIdentifier(llvm::StringRef Str);
   void lexDigit(Token &Result);
 };
 }

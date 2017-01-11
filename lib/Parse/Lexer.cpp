@@ -7,36 +7,38 @@
 #include <stdlib.h>
 #include <string>
 
-pigeon::Lexer::Lexer(unsigned BufferID, llvm::SourceMgr &SM) : SourceMgr(SM) {
+using namespace pigeon;
+
+Lexer::Lexer(unsigned BufferID, llvm::SourceMgr &SM) : SourceMgr(SM) {
   Buffer = SM.getMemoryBuffer(BufferID);
   CurPtr = Buffer->getBufferStart();
 }
 
-void pigeon::Lexer::warning(const char *Loc, const char *Message) {
+void Lexer::warning(const char *Loc, const char *Message) {
   SourceMgr.PrintMessage(llvm::SMLoc::getFromPointer(Loc),
                          llvm::SourceMgr::DK_Warning, Message);
 }
 
-void pigeon::Lexer::error(const char *Loc, const char *Message) {
+void Lexer::error(const char *Loc, const char *Message) {
   SourceMgr.PrintMessage(llvm::SMLoc::getFromPointer(Loc),
                          llvm::SourceMgr::DK_Error, Message);
 }
 
-void pigeon::Lexer::formToken(pigeon::tok token, const char *TokStart,
-                              pigeon::Token &Result) {
+void Lexer::formToken(tok token, const char *TokStart,
+                              Token &Result) {
   Result.setToken(token, llvm::StringRef(TokStart, CurPtr - TokStart));
 }
 
-void pigeon::Lexer::lexDigit(Token &Result) {
+void Lexer::lexDigit(Token &Result) {
   const char *TokStart = CurPtr - 1;
 
   while (isdigit(*CurPtr))
     CurPtr++;
 
-  return formToken(pigeon::tok::integer_literal, TokStart, Result);
+  return formToken(tok::integer_literal, TokStart, Result);
 }
 
-void pigeon::Lexer::lex(Token &Result) {
+void Lexer::lex(Token &Result) {
   assert(CurPtr >= Buffer->getBufferStart() &&
          CurPtr <= Buffer->getBufferEnd() && "Cur Char Pointer out of range!");
 Restart:
@@ -56,9 +58,9 @@ Restart:
       warning(CurPtr - 1, "null character embedded in middle of file");
       goto Restart;
     }
-    return formToken(pigeon::tok::eof, TokStart, Result);
+    return formToken(tok::eof, TokStart, Result);
   case '+':
-    return formToken(pigeon::tok::oper_binary, TokStart, Result);
+    return formToken(tok::oper_binary, TokStart, Result);
   case '0':
   case '1':
   case '2':
@@ -72,4 +74,13 @@ Restart:
     return lexDigit(Result);
   }
   goto Restart;
+}
+
+tok Lexer::kindOfIdentifier(llvm::StringRef Str) {
+    tok Kind = llvm::StringSwitch<tok>(Str)
+    .Case("func", tok::kw_func)
+    .Case("var", tok::kw_var)
+    .Default(tok::identifier);
+
+    return Kind;
 }
