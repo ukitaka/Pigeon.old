@@ -61,16 +61,8 @@ Restart:
     return formToken(tok::eof, TokStart, Result);
   case '+':
     return formToken(tok::oper_binary, TokStart, Result);
-  case '0':
-  case '1':
-  case '2':
-  case '3':
-  case '4':
-  case '5':
-  case '6':
-  case '7':
-  case '8':
-  case '9':
+  case '0': case '1': case '2': case '3': case '4':
+  case '5': case '6': case '7': case '8': case '9':
     return lexDigit(Result);
   }
   goto Restart;
