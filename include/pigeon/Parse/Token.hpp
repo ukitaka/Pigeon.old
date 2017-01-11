@@ -25,6 +25,7 @@ enum class tok {
   string_literal,
   comment,
   kw_var,
+  kw_func,
   NUM_TOKENS
 };
 
