@@ -19,7 +19,7 @@ int main() {
   pigeon::Token token;
 
   while (!token.isEOF()) {
-    lexer.Lex(token);
+    lexer.lex(token);
     std::cout << std::string(token.getText()) << std::endl;
   }
 

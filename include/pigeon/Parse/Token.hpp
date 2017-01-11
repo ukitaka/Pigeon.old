@@ -12,12 +12,19 @@
 #include "llvm/ADT/StringRef.h"
 
 namespace pigeon {
+
 enum class tok {
   unknown = 0,
   eof,
   identifier,
-  numeric_constant,
-  plus, // +
+  oper_binary,
+  oper_postfix,
+  oper_prefix,
+  integer_literal,
+  floating_literal,
+  string_literal,
+  comment,
+  kw_var,
   NUM_TOKENS
 };
 

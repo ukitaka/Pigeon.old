@@ -23,14 +23,14 @@ class Lexer {
 
 public:
   Lexer(unsigned BufferID, llvm::SourceMgr &SM);
-  void Lex(Token &Result);
+  void lex(Token &Result);
 
 private:
-  void Warning(const char *Loc, const char *Message);
-  void Error(const char *Loc, const char *Message);
-  void FormToken(tok token, const char *TokStart, Token &Result);
+  void warning(const char *Loc, const char *Message);
+  void error(const char *Loc, const char *Message);
+  void formToken(tok token, const char *TokStart, Token &Result);
 
-  void LexDigit(Token &Result);
+  void lexDigit(Token &Result);
 };
 }
 

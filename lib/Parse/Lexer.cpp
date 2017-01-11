@@ -12,31 +12,31 @@ pigeon::Lexer::Lexer(unsigned BufferID, llvm::SourceMgr &SM) : SourceMgr(SM) {
   CurPtr = Buffer->getBufferStart();
 }
 
-void pigeon::Lexer::Warning(const char *Loc, const char *Message) {
+void pigeon::Lexer::warning(const char *Loc, const char *Message) {
   SourceMgr.PrintMessage(llvm::SMLoc::getFromPointer(Loc),
                          llvm::SourceMgr::DK_Warning, Message);
 }
 
-void pigeon::Lexer::Error(const char *Loc, const char *Message) {
+void pigeon::Lexer::error(const char *Loc, const char *Message) {
   SourceMgr.PrintMessage(llvm::SMLoc::getFromPointer(Loc),
                          llvm::SourceMgr::DK_Error, Message);
 }
 
-void pigeon::Lexer::FormToken(pigeon::tok token, const char *TokStart,
+void pigeon::Lexer::formToken(pigeon::tok token, const char *TokStart,
                               pigeon::Token &Result) {
   Result.setToken(token, llvm::StringRef(TokStart, CurPtr - TokStart));
 }
 
-void pigeon::Lexer::LexDigit(Token &Result) {
+void pigeon::Lexer::lexDigit(Token &Result) {
   const char *TokStart = CurPtr - 1;
 
   while (isdigit(*CurPtr))
     CurPtr++;
 
-  return FormToken(pigeon::tok::numeric_constant, TokStart, Result);
+  return formToken(pigeon::tok::integer_literal, TokStart, Result);
 }
 
-void pigeon::Lexer::Lex(Token &Result) {
+void pigeon::Lexer::lex(Token &Result) {
   assert(CurPtr >= Buffer->getBufferStart() &&
          CurPtr <= Buffer->getBufferEnd() && "Cur Char Pointer out of range!");
 Restart:
@@ -53,12 +53,12 @@ Restart:
 
   case 0:
     if (CurPtr - 1 != Buffer->getBufferEnd()) {
-      Warning(CurPtr - 1, "null character embedded in middle of file");
+      warning(CurPtr - 1, "null character embedded in middle of file");
       goto Restart;
     }
-    return FormToken(pigeon::tok::eof, TokStart, Result);
+    return formToken(pigeon::tok::eof, TokStart, Result);
   case '+':
-    return FormToken(pigeon::tok::plus, TokStart, Result);
+    return formToken(pigeon::tok::oper_binary, TokStart, Result);
   case '0':
   case '1':
   case '2':
@@ -69,7 +69,7 @@ Restart:
   case '7':
   case '8':
   case '9':
-    return LexDigit(Result);
+    return lexDigit(Result);
   }
   goto Restart;
 }
