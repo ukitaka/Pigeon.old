@@ -27,3 +27,7 @@ $ cmake .. -G "Xcode"
 $ open pigeon.xcodeproj
 ```
 
+## Coding Standards
+
+See: [LLVM Coding Standards](http://llvm.org/docs/CodingStandards.html#name-types-functions-variables-and-enumerators-properly)
+
