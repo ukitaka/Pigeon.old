@@ -34,9 +34,10 @@ class Token {
   llvm::StringRef Text;
 
 public:
-  Token() : Kind(tok::unknown) {}
+  Token() : Kind(tok::NUM_TOKENS), Text("") {}
 
   llvm::StringRef getText() const { return Text; }
+  tok getKind() const { return Kind; }
   bool isEOF() const { return Kind == tok::eof; }
 
   void setToken(tok K, llvm::StringRef T) {

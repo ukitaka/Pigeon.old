@@ -12,6 +12,7 @@ using namespace pigeon;
 Lexer::Lexer(unsigned BufferID, llvm::SourceMgr &SM) : SourceMgr(SM) {
   Buffer = SM.getMemoryBuffer(BufferID);
   CurPtr = Buffer->getBufferStart();
+  lexImpl();
 }
 
 void Lexer::warning(const char *Loc, const char *Message) {
@@ -24,21 +25,20 @@ void Lexer::error(const char *Loc, const char *Message) {
                          llvm::SourceMgr::DK_Error, Message);
 }
 
-void Lexer::formToken(tok token, const char *TokStart,
-                              Token &Result) {
-  Result.setToken(token, llvm::StringRef(TokStart, CurPtr - TokStart));
+void Lexer::formToken(tok token, const char *TokStart) {
+  NextToken.setToken(token, llvm::StringRef(TokStart, CurPtr - TokStart));
 }
 
-void Lexer::lexDigit(Token &Result) {
+void Lexer::lexNumber() {
   const char *TokStart = CurPtr - 1;
 
   while (isdigit(*CurPtr))
     CurPtr++;
 
-  return formToken(tok::integer_literal, TokStart, Result);
+  return formToken(tok::integer_literal, TokStart);
 }
 
-void Lexer::lex(Token &Result) {
+void Lexer::lexImpl() {
   assert(CurPtr >= Buffer->getBufferStart() &&
          CurPtr <= Buffer->getBufferEnd() && "Cur Char Pointer out of range!");
 Restart:
@@ -58,12 +58,12 @@ Restart:
       warning(CurPtr - 1, "null character embedded in middle of file");
       goto Restart;
     }
-    return formToken(tok::eof, TokStart, Result);
+    return formToken(tok::eof, TokStart);
   case '+':
-    return formToken(tok::oper_binary, TokStart, Result);
+    return formToken(tok::oper_binary, TokStart);
   case '0': case '1': case '2': case '3': case '4':
   case '5': case '6': case '7': case '8': case '9':
-    return lexDigit(Result);
+    return lexNumber();
   }
   goto Restart;
 }

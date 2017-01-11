@@ -18,20 +18,28 @@ class Lexer {
   const llvm::MemoryBuffer *Buffer;
   const char *CurPtr;
 
+  Token NextToken;
+
   Lexer(const Lexer &);
   void operator=(const Lexer &);
 
 public:
   Lexer(unsigned BufferID, llvm::SourceMgr &SM);
-  void lex(Token &Result);
+  void lex(Token &Result) {
+      Result = NextToken;
+      if (!Result.isEOF())
+          lexImpl();
+  }
 
 private:
   void warning(const char *Loc, const char *Message);
   void error(const char *Loc, const char *Message);
-  void formToken(tok token, const char *TokStart, Token &Result);
+  void formToken(tok token, const char *TokStart);
+
+  void lexNumber();
 
   static tok kindOfIdentifier(llvm::StringRef Str);
-  void lexDigit(Token &Result);
+    void lexImpl();
 };
 }
 
