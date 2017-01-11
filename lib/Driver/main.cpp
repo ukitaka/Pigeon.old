@@ -12,7 +12,7 @@ void printToken(pigeon::Token Token);
 
 int main() {
   llvm::SourceMgr SourceMgr;
-  const char *source = "1+2*3\n";
+  const char *source = "(1 + 2) * 3\n";
   unique_ptr<llvm::MemoryBuffer> buf = llvm::MemoryBuffer::getMemBuffer(source);
   unsigned mainBufferID =
       SourceMgr.AddNewSourceBuffer(std::move(buf), llvm::SMLoc());
@@ -54,6 +54,10 @@ string kindString(pigeon::tok Kind) {
             return "tok::kw_var";
         case pigeon::tok::kw_func:
             return "tok::kw_func";
+        case pigeon::tok::l_paren:
+            return "tok::l_paren";
+        case pigeon::tok::r_paren:
+            return "tok::r_paren";
         case pigeon::tok::NUM_TOKENS:
             return "tok::NUM_TOKENS";
     }

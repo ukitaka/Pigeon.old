@@ -61,6 +61,10 @@ Restart:
     return formToken(tok::eof, TokStart);
   case '+': case '*':
     return formToken(tok::oper_binary, TokStart);
+  case '(':
+    return formToken(tok::l_paren, TokStart);
+  case ')':
+    return formToken(tok::r_paren, TokStart);
   case '0': case '1': case '2': case '3': case '4':
   case '5': case '6': case '7': case '8': case '9':
     return lexNumber();
