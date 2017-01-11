@@ -22,17 +22,17 @@ enum class tok {
 };
 
 class Token {
-  tok token;
+  tok Kind;
   llvm::StringRef Text;
 
 public:
-  Token() : token(tok::unknown) {}
+  Token() : Kind(tok::unknown) {}
 
   llvm::StringRef getText() const { return Text; }
-  bool isEOF() const { return token == tok::eof; }
+  bool isEOF() const { return Kind == tok::eof; }
 
   void setToken(tok K, llvm::StringRef T) {
-    token = K;
+    Kind = K;
     Text = T;
   }
 };
