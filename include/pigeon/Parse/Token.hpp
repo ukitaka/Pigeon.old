@@ -12,29 +12,30 @@
 #include "llvm/ADT/StringRef.h"
 
 namespace pigeon {
-    enum class tok {
-        unknown = 0,
-        eof,
-        identifier,
-        numeric_constant,
-        plus, // +
-        NUM_TOKENS
-    };
+enum class tok {
+  unknown = 0,
+  eof,
+  identifier,
+  numeric_constant,
+  plus, // +
+  NUM_TOKENS
+};
 
-    class Token {
-        tok token;
-        llvm::StringRef Text;
-    public:
-        Token(): token(tok::unknown) {}
+class Token {
+  tok token;
+  llvm::StringRef Text;
 
-        llvm::StringRef getText() const { return Text; }
-        bool isEOF() const { return token == tok::eof; }
+public:
+  Token() : token(tok::unknown) {}
 
-        void setToken(tok K, llvm::StringRef T) {
-            token = K;
-            Text = T;
-        }
-    };
+  llvm::StringRef getText() const { return Text; }
+  bool isEOF() const { return token == tok::eof; }
+
+  void setToken(tok K, llvm::StringRef T) {
+    token = K;
+    Text = T;
+  }
+};
 }
 
 #endif /* PIGEON_PARSE_TOKEN_H */

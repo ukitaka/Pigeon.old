@@ -20,3 +20,14 @@ set (CMAKE_EXE_LINKER_FLAGS "-g ${LINKER_FLAGS}")
 
 add_subdirectory(lib)
 
+
+# clang-format
+execute_process (COMMAND 
+    which clang-format
+    OUTPUT_VARIABLE CLANG_FMT_PATH)
+
+file(GLOB_RECURSE ALL_SOURCE_FILES RELATIVE ${PROJECT_BINARY_DIR}
+    ${CMAKE_CURRENT_LIST_DIR}/lib/*.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/include/*.hpp) 
+
+add_custom_target( clangformat COMMAND ${CLANG_FMT_PATH} -style=LLVM -i ${ALL_SOURCE_FILES} )

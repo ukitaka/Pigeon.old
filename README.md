@@ -9,6 +9,7 @@ First, install `llvm` and `cmake`.
 ```
 $ brew install llvm
 $ brew install cmake
+$ brew install clang-format
 ```
 
 Clone `Pigeon` repository
