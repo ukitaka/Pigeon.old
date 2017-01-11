@@ -4,7 +4,7 @@ Swift-like programming language using LLVM
 
 ## Developing in Xcode
 
-First, install `llvm` and `cmake`.
+First, install `llvm`, `cmake` and `clang-format`.
 
 ```
 $ brew install llvm
