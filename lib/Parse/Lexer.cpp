@@ -142,11 +142,7 @@ void Lexer::lexIdentifier() {
   while (isalpha(*CurPtr) || *CurPtr == '_')
     CurPtr++;
 
-  auto Kind =
-      llvm::StringSwitch<tok>(llvm::StringRef(TokStart, (CurPtr - TokStart)))
-          .Case("func", tok::kw_func)
-          .Case("var", tok::kw_var)
-          .Default(tok::identifier);
+  auto Kind = kindOfIdentifier(llvm::StringRef(TokStart, (CurPtr - TokStart)));
 
   return formToken(Kind, TokStart);
 }
