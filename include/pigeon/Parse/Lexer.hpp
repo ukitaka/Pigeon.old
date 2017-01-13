@@ -37,9 +37,10 @@ private:
   void formToken(tok token, const char *TokStart);
 
   void lexNumber();
+  void lexIdentifier();
 
   static tok kindOfIdentifier(llvm::StringRef Str);
-    void lexImpl();
+  void lexImpl();
 };
 }
 

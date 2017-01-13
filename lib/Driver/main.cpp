@@ -12,7 +12,7 @@ void printToken(pigeon::Token Token);
 
 int main() {
   llvm::SourceMgr SourceMgr;
-  const char *source = "(1 + 2) * 3\n";
+  const char *source = "val abc = (1 + 2) * 3\nfunc piyo";
   unique_ptr<llvm::MemoryBuffer> buf = llvm::MemoryBuffer::getMemBuffer(source);
   unsigned mainBufferID =
       SourceMgr.AddNewSourceBuffer(std::move(buf), llvm::SMLoc());
