@@ -86,7 +86,7 @@ Restart:
   case '#':
     return formToken(tok::pound, TokStart);
   case '-':
-    if (*(CurPtr + 1) == '>') {
+    if (*CurPtr == '>') {
       CurPtr++;
       return formToken(tok::arrow, TokStart);
     }
