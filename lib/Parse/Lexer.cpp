@@ -59,25 +59,78 @@ Restart:
       goto Restart;
     }
     return formToken(tok::eof, TokStart);
-  case '+': case '*':
+  case '+':
+  case '*':
     return formToken(tok::oper_binary, TokStart);
   case '(':
     return formToken(tok::l_paren, TokStart);
   case ')':
     return formToken(tok::r_paren, TokStart);
 
-  case 'A': case 'B': case 'C': case 'D': case 'E': case 'F': case 'G':
-  case 'H': case 'I': case 'J': case 'K': case 'L': case 'M': case 'N':
-  case 'O': case 'P': case 'Q': case 'R': case 'S': case 'T': case 'U':
-  case 'V': case 'W': case 'X': case 'Y': case 'Z':
-  case 'a': case 'b': case 'c': case 'd': case 'e': case 'f': case 'g':
-  case 'h': case 'i': case 'j': case 'k': case 'l': case 'm': case 'n':
-  case 'o': case 'p': case 'q': case 'r': case 's': case 't': case 'u':
-  case 'v': case 'w': case 'x': case 'y': case 'z':
+  case 'A':
+  case 'B':
+  case 'C':
+  case 'D':
+  case 'E':
+  case 'F':
+  case 'G':
+  case 'H':
+  case 'I':
+  case 'J':
+  case 'K':
+  case 'L':
+  case 'M':
+  case 'N':
+  case 'O':
+  case 'P':
+  case 'Q':
+  case 'R':
+  case 'S':
+  case 'T':
+  case 'U':
+  case 'V':
+  case 'W':
+  case 'X':
+  case 'Y':
+  case 'Z':
+  case 'a':
+  case 'b':
+  case 'c':
+  case 'd':
+  case 'e':
+  case 'f':
+  case 'g':
+  case 'h':
+  case 'i':
+  case 'j':
+  case 'k':
+  case 'l':
+  case 'm':
+  case 'n':
+  case 'o':
+  case 'p':
+  case 'q':
+  case 'r':
+  case 's':
+  case 't':
+  case 'u':
+  case 'v':
+  case 'w':
+  case 'x':
+  case 'y':
+  case 'z':
   case '_':
     return lexIdentifier();
-  case '0': case '1': case '2': case '3': case '4':
-  case '5': case '6': case '7': case '8': case '9':
+  case '0':
+  case '1':
+  case '2':
+  case '3':
+  case '4':
+  case '5':
+  case '6':
+  case '7':
+  case '8':
+  case '9':
     return lexNumber();
   }
   goto Restart;
@@ -89,14 +142,20 @@ void Lexer::lexIdentifier() {
   while (isalpha(*CurPtr) || *CurPtr == '_')
     CurPtr++;
 
-  return formToken(tok::identifier, TokStart);
+  auto Kind =
+      llvm::StringSwitch<tok>(llvm::StringRef(TokStart, (CurPtr - TokStart)))
+          .Case("func", tok::kw_func)
+          .Case("var", tok::kw_var)
+          .Default(tok::identifier);
+
+  return formToken(Kind, TokStart);
 }
 
 tok Lexer::kindOfIdentifier(llvm::StringRef Str) {
-    tok Kind = llvm::StringSwitch<tok>(Str)
-    .Case("func", tok::kw_func)
-    .Case("var", tok::kw_var)
-    .Default(tok::identifier);
+  tok Kind = llvm::StringSwitch<tok>(Str)
+                 .Case("func", tok::kw_func)
+                 .Case("var", tok::kw_var)
+                 .Default(tok::identifier);
 
-    return Kind;
+  return Kind;
 }

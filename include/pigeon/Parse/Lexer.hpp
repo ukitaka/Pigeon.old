@@ -26,9 +26,9 @@ class Lexer {
 public:
   Lexer(unsigned BufferID, llvm::SourceMgr &SM);
   void lex(Token &Result) {
-      Result = NextToken;
-      if (!Result.isEOF())
-          lexImpl();
+    Result = NextToken;
+    if (!Result.isEOF())
+      lexImpl();
   }
 
 private:
