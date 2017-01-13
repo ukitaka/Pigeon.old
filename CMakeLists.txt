@@ -24,7 +24,8 @@ add_subdirectory(lib)
 # clang-format
 execute_process (COMMAND 
     which clang-format
-    OUTPUT_VARIABLE CLANG_FMT_PATH)
+    OUTPUT_VARIABLE CLANG_FMT_PATH_)
+string (REPLACE "\n" "" CLANG_FMT_PATH ${CLANG_FMT_PATH_})
 
 file(GLOB_RECURSE ALL_SOURCE_FILES RELATIVE ${PROJECT_BINARY_DIR}
     ${CMAKE_CURRENT_LIST_DIR}/lib/*.cpp
