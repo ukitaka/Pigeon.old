@@ -80,6 +80,8 @@ string kindString(pigeon::tok Kind) {
     return "tok::at_sign";
   case pigeon::tok::pound:
     return "tok::pound";
+  case pigeon::tok::arrow:
+    return "tok::arrow";
   case pigeon::tok::NUM_TOKENS:
     return "tok::NUM_TOKENS";
   }
