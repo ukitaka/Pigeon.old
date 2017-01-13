@@ -59,13 +59,21 @@ Restart:
       goto Restart;
     }
     return formToken(tok::eof, TokStart);
+  case '(':
+    return formToken(tok::l_paren, TokStart);
+  case '{':
+    return formToken(tok::l_brace, TokStart);
+  case '[':
+    return formToken(tok::l_square, TokStart);
+  case ')':
+    return formToken(tok::r_paren, TokStart);
+  case '}':
+    return formToken(tok::r_brace, TokStart);
+  case ']':
+    return formToken(tok::r_square, TokStart);
   case '+':
   case '*':
     return formToken(tok::oper_binary, TokStart);
-  case '(':
-    return formToken(tok::l_paren, TokStart);
-  case ')':
-    return formToken(tok::r_paren, TokStart);
 
   case 'A':
   case 'B':

@@ -26,8 +26,12 @@ enum class tok {
   comment,
   kw_var,
   kw_func,
-  l_paren, // (
-  r_paren, // )
+  l_paren,  // (
+  r_paren,  // )
+  l_brace,  // {
+  r_brace,  // }
+  l_square, // [
+  r_square, // ]
   NUM_TOKENS
 };
 
