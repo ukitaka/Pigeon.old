@@ -58,6 +58,28 @@ string kindString(pigeon::tok Kind) {
     return "tok::l_paren";
   case pigeon::tok::r_paren:
     return "tok::r_paren";
+  case pigeon::tok::l_brace:
+    return "tok::l_brace";
+  case pigeon::tok::r_brace:
+    return "tok::r_brace";
+  case pigeon::tok::l_square:
+    return "tok::l_square";
+  case pigeon::tok::r_square:
+    return "tok::r_square";
+  case pigeon::tok::period:
+    return "tok::period";
+  case pigeon::tok::comma:
+    return "tok::comma";
+  case pigeon::tok::colon:
+    return "tok::colon";
+  case pigeon::tok::semi:
+    return "tok::semi";
+  case pigeon::tok::equal:
+    return "tok::equal";
+  case pigeon::tok::at_sign:
+    return "tok::at_sign";
+  case pigeon::tok::pound:
+    return "tok::pound";
   case pigeon::tok::NUM_TOKENS:
     return "tok::NUM_TOKENS";
   }
