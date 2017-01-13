@@ -74,7 +74,7 @@ Restart:
   case 'h': case 'i': case 'j': case 'k': case 'l': case 'm': case 'n':
   case 'o': case 'p': case 'q': case 'r': case 's': case 't': case 'u':
   case 'v': case 'w': case 'x': case 'y': case 'z':
-//  case '_':
+  case '_':
     return lexIdentifier();
   case '0': case '1': case '2': case '3': case '4':
   case '5': case '6': case '7': case '8': case '9':
@@ -86,7 +86,7 @@ Restart:
 void Lexer::lexIdentifier() {
   const char *TokStart = CurPtr - 1;
 
-  while (isalpha(*CurPtr))
+  while (isalpha(*CurPtr) || *CurPtr == '_')
     CurPtr++;
 
   return formToken(tok::identifier, TokStart);
