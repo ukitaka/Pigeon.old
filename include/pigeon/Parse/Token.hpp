@@ -52,7 +52,7 @@ public:
 
   llvm::StringRef getText() const { return Text; }
   tok getKind() const { return Kind; }
-  
+
   bool is(tok K) const { return Kind == K; }
   bool isNot(tok K) const { return Kind != K; }
 

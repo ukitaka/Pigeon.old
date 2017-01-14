@@ -39,6 +39,9 @@ private:
   void lexNumber();
   void lexIdentifier();
 
+  void skipToEndOfLine();
+  void skipSlashSlashComment();
+
   static tok kindOfIdentifier(llvm::StringRef Str);
   void lexImpl();
 };

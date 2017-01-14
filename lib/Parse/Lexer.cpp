@@ -91,6 +91,14 @@ Restart:
       return formToken(tok::arrow, TokStart);
     }
     return formToken(tok::oper_binary, TokStart);
+
+  case '/':
+    if (*CurPtr == '/') {
+      skipSlashSlashComment();
+      return formToken(tok::comment, TokStart);
+    }
+    return formToken(tok::oper_binary, TokStart);
+
   case '+':
   case '*':
     return formToken(tok::oper_binary, TokStart);
@@ -183,3 +191,10 @@ tok Lexer::kindOfIdentifier(llvm::StringRef Str) {
 
   return Kind;
 }
+
+void Lexer::skipToEndOfLine() {
+  while (*CurPtr != '\n')
+    CurPtr++;
+}
+
+void Lexer::skipSlashSlashComment() { skipToEndOfLine(); }
