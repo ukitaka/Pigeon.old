@@ -27,7 +27,7 @@ public:
   Lexer(unsigned BufferID, llvm::SourceMgr &SM);
   void lex(Token &Result) {
     Result = NextToken;
-    if (!Result.isEOF())
+    if (!Result.is(tok::eof))
       lexImpl();
   }
 

@@ -52,7 +52,9 @@ public:
 
   llvm::StringRef getText() const { return Text; }
   tok getKind() const { return Kind; }
-  bool isEOF() const { return Kind == tok::eof; }
+  
+  bool is(tok K) const { return Kind == K; }
+  bool isNot(tok K) const { return Kind != K; }
 
   void setToken(tok K, llvm::StringRef T) {
     Kind = K;

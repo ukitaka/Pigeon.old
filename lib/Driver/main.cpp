@@ -23,7 +23,7 @@ int main() {
 
   pigeon::Token token;
 
-  while (!token.isEOF()) {
+  while (!token.is(pigeon::tok::eof)) {
     lexer.lex(token);
     printToken(token);
   }
