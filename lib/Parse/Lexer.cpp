@@ -1,4 +1,4 @@
-#include "pigeon/Parse/lexer.hpp"
+#include "pigeon/Parse/Lexer.hpp"
 #include "llvm/ADT/StringRef.h"
 #include "llvm/ADT/StringSwitch.h"
 #include "llvm/Support/MemoryBuffer.h"
@@ -98,7 +98,7 @@ Restart:
       return formToken(tok::comment, TokStart);
     }
     return formToken(tok::oper_binary, TokStart);
-
+  
   case '+':
   case '*':
     return formToken(tok::oper_binary, TokStart);
@@ -197,4 +197,6 @@ void Lexer::skipToEndOfLine() {
     CurPtr++;
 }
 
-void Lexer::skipSlashSlashComment() { skipToEndOfLine(); }
+void Lexer::skipSlashSlashComment() {
+  skipToEndOfLine();
+}
