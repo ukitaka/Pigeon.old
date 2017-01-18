@@ -11,6 +11,7 @@
 
 namespace pigeon {
 class Decl {};
+class VarDecl : public Decl {};
 }
 
 #endif /* Decl_hpp */
