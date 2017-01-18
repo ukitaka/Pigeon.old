@@ -98,7 +98,7 @@ Restart:
       return formToken(tok::comment, TokStart);
     }
     return formToken(tok::oper_binary, TokStart);
-  
+
   case '+':
   case '*':
     return formToken(tok::oper_binary, TokStart);
@@ -197,6 +197,4 @@ void Lexer::skipToEndOfLine() {
     CurPtr++;
 }
 
-void Lexer::skipSlashSlashComment() {
-  skipToEndOfLine();
-}
+void Lexer::skipSlashSlashComment() { skipToEndOfLine(); }

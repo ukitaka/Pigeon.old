@@ -12,10 +12,10 @@
 #include <memory>
 
 namespace pigeon {
-  class SourceFile {
-  public:
-      SourceFile(unsigned BufferID);
-  };
+class SourceFile {
+public:
+  SourceFile(unsigned BufferID);
+};
 }
 
 #endif /* PIGEON_AST_SOURCE_H */

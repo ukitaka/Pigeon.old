@@ -2,6 +2,4 @@
 
 using namespace pigeon;
 
-SourceFile::SourceFile(unsigned BufferID) {
-
-}
+SourceFile::SourceFile(unsigned BufferID) {}

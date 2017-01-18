@@ -9,21 +9,21 @@
 #ifndef PIGEON_PARSE_PARSER_H
 #define PIGEON_PARSE_PARSER_H
 
-#include <memory>
 #include "Lexer.hpp"
+#include <memory>
 
 namespace llvm {
-    class SourceMgr;
+class SourceMgr;
 }
 
 namespace pigeon {
-  class Parser {
-  public:
-      Parser(unsigned BufferID, llvm::SourceMgr &SourceMgr);
-  private:
-      std::unique_ptr<Lexer> L;
-  };
-}
+class Parser {
+public:
+  Parser(unsigned BufferID, llvm::SourceMgr &SourceMgr);
 
+private:
+  std::unique_ptr<Lexer> L;
+};
+}
 
 #endif /* PIGEON_PARSE_PARSER_H */

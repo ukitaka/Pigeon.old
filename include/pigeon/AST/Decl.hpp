@@ -10,9 +10,7 @@
 #define PIGEON_AST_DECL_H
 
 namespace pigeon {
-    class Decl {
-        
-    };
+class Decl {};
 }
 
 #endif /* Decl_hpp */

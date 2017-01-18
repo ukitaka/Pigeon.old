@@ -5,7 +5,5 @@
 
 using namespace pigeon;
 
-Parser::Parser(unsigned BufferID, llvm::SourceMgr &SourceMgr):
-L(std::unique_ptr<Lexer>(new Lexer(BufferID, SourceMgr)))
-{
-}
+Parser::Parser(unsigned BufferID, llvm::SourceMgr &SourceMgr)
+    : L(std::unique_ptr<Lexer>(new Lexer(BufferID, SourceMgr))) {}
