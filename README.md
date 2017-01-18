@@ -2,6 +2,10 @@
 
 Swift-like programming language using LLVM
 
+## Grammar
+
++ see: [Grammar](https://github.com/ukitaka/Pigeon/blob/master/docs/Grammar.md)
+
 ## Developing in Xcode
 
 First, install `llvm`, `cmake` and `clang-format`.
