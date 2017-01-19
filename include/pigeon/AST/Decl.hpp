@@ -9,9 +9,16 @@
 #ifndef PIGEON_AST_DECL_H
 #define PIGEON_AST_DECL_H
 
+#include "pigeon/AST/Type.hpp"
+#include <memory>
+
 namespace pigeon {
+
 class Decl {};
-class VarDecl : public Decl {};
+
+class VarDecl : public Decl {
+  std::shared_ptr<Type> Type;
+};
 }
 
 #endif /* Decl_hpp */
