@@ -9,8 +9,8 @@
 #ifndef PIGEON_AST_DECL_H
 #define PIGEON_AST_DECL_H
 
-#include "pigeon/AST/Type.hpp"
 #include "pigeon/AST/Identifier.hpp"
+#include "pigeon/AST/Type.hpp"
 #include <memory>
 
 namespace pigeon {
