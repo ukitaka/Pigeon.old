@@ -9,15 +9,17 @@
 #ifndef PIGEON_AST_IDENTIFIER_H
 #define PIGEON_AST_IDENTIFIER_H
 
-#include <string>
 #include "llvm/ADT/StringRef.h"
+#include <string>
 
 namespace pigeon {
-    class Identifier {
-        llvm::StringRef Name;
-    public:
-        llvm::StringRef getName() const { return Name; }
-    };
+class Identifier {
+  llvm::StringRef Name;
+
+public:
+  Identifier(llvm::StringRef Name);
+  llvm::StringRef getName() const { return Name; }
+};
 }
 
 #endif /* PIGEON_AST_IDENTIFIER_H */

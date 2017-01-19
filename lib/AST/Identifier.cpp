@@ -7,3 +7,7 @@
 //
 
 #include "pigeon/AST/Identifier.hpp"
+
+using namespace pigeon;
+
+Identifier::Identifier(llvm::StringRef Name) : Name(Name) {}
