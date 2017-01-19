@@ -10,6 +10,4 @@
 
 using namespace pigeon;
 
-BinaryOperator::BinaryOperator(OperatorKind Kind): Kind(Kind) {
-
-}
+BinaryOperator::BinaryOperator(OperatorKind Kind) : Kind(Kind) {}

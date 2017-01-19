@@ -10,20 +10,16 @@
 #define PIGEON_AST_OPERATOR_H
 
 namespace pigeon {
-    enum class OperatorKind {
-        Add,
-        Sub,
-        Mul,
-        Shl
-    };
-    
-    class Operator { };
-    class BinaryOperator: public Operator {
-        const OperatorKind Kind;
-    public:
-        BinaryOperator(OperatorKind Kind);
-        OperatorKind getKind() const { return Kind; };
-    };
+enum class OperatorKind { Add, Sub, Mul, Shl };
+
+class Operator {};
+class BinaryOperator : public Operator {
+  const OperatorKind Kind;
+
+public:
+  BinaryOperator(OperatorKind Kind);
+  OperatorKind getKind() const { return Kind; };
+};
 }
 
 #endif /* PIGEON_AST_OPERATOR_H */

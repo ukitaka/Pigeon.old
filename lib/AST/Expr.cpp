@@ -7,3 +7,7 @@
 //
 
 #include "pigeon/AST/Expr.hpp"
+
+using namespace pigeon;
+
+Expr::Expr(ExprKind Kind) : Kind(Kind) {}
