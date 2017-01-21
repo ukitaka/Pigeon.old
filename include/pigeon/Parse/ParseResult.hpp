@@ -13,16 +13,16 @@
 
 namespace pigeon {
 
+enum class ResultKind {
+  Success,
+  Error,
+};
+
 template <typename T> class ParseResult {
 public:
-  ParseResult(T const &OK) : Kind(Success) { Success = OK; }
+  ParseResult(T const &OK) : Kind(ResultKind::Success) { Success = OK; }
 
   ParseResult(ParseError const &Err) : Kind(ResultKind::Error) { Error = Err; }
-
-  enum class ResultKind {
-    Success,
-    Error,
-  };
 
 private:
   ResultKind Kind;
