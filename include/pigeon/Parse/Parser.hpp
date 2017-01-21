@@ -24,8 +24,12 @@ public:
   Parser(unsigned BufferID, llvm::SourceMgr &SourceMgr);
   ParseResult<Expr> ParseExpr();
   ParseResult<Expr> ParseIntegerLiteral();
+  void ConsumeToken();
+  void ConsumeToken(tok Kind);
+  bool ConsumeTokenIf(tok Kind);
 
 private:
+  Token Token;
   std::unique_ptr<Lexer> L;
 };
 }
