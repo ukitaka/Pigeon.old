@@ -10,6 +10,8 @@
 #define PIGEON_PARSE_PARSER_H
 
 #include "Lexer.hpp"
+#include "pigeon/AST/Expr.hpp"
+#include "pigeon/Parse/ParseResult.hpp"
 #include <memory>
 
 namespace llvm {
@@ -20,6 +22,8 @@ namespace pigeon {
 class Parser {
 public:
   Parser(unsigned BufferID, llvm::SourceMgr &SourceMgr);
+  ParseResult<Expr> ParseExpr();
+  ParseResult<Expr> ParseIntegerLiteral();
 
 private:
   std::unique_ptr<Lexer> L;

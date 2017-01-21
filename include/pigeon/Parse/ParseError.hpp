@@ -12,7 +12,7 @@
 #include "llvm/ADT/StringRef.h"
 
 namespace pigeon {
-enum class ParseErrorKind {};
+enum class ParseErrorKind { InvalidToken };
 
 class ParseError {
 public:
