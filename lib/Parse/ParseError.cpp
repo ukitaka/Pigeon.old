@@ -10,9 +10,5 @@
 
 using namespace pigeon;
 
-ParseError::ParseError(llvm::StringRef Message, ParseErrorKind Kind):
-Kind(Kind),
-Message(Message)
-{
-
-}
+ParseError::ParseError(llvm::StringRef Message, ParseErrorKind Kind)
+    : Kind(Kind), Message(Message) {}

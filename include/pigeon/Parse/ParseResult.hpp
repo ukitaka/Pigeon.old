@@ -12,31 +12,25 @@
 #include "pigeon/Parse/ParseError.hpp"
 
 namespace pigeon {
-    
-    template <typename T>
-    class ParseResult {
-    public:
-        ParseResult(T const& OK): Kind(Success) {
-            Success = OK;
-        }
 
-        ParseResult(ParseError const& Err): Kind(ResultKind::Error) {
-            Error = Err;
-        }
-        
-        enum class ResultKind {
-            Success,
-            Error,
-        };
+template <typename T> class ParseResult {
+public:
+  ParseResult(T const &OK) : Kind(Success) { Success = OK; }
 
-    private:
-        ResultKind Kind;
-        union {
-            T Success;
-            ParseError Error;
-        };
-    };
-    
+  ParseResult(ParseError const &Err) : Kind(ResultKind::Error) { Error = Err; }
+
+  enum class ResultKind {
+    Success,
+    Error,
+  };
+
+private:
+  ResultKind Kind;
+  union {
+    T Success;
+    ParseError Error;
+  };
+};
 }
 
 #endif /* PIGEON_PARSE_PARSE_RESULT_H */
