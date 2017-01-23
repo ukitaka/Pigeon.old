@@ -38,7 +38,6 @@
 
 ### `expr`
 
-+ `expr` → `expr`
 + `expr` → ( `expr` )
 + `expr` → `expr` `oper_binary` `expr`
 + `expr` → `integer-literal`
