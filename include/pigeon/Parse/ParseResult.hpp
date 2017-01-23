@@ -23,6 +23,7 @@ public:
   ParseResult(T const &OK) : Kind(ResultKind::Success) { Success = OK; }
 
   ParseResult(ParseError const &Err) : Kind(ResultKind::Error) { Error = Err; }
+  bool isSuccess() const { return Kind == Success; }
 
 private:
   ResultKind Kind;
