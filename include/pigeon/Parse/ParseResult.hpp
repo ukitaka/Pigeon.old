@@ -24,6 +24,7 @@ public:
 
   ParseResult(ParseError const &Err) : Kind(ResultKind::Error) { Error = Err; }
   bool isSuccess() const { return Kind == Success; }
+  T get() const { return Success; }
 
 private:
   ResultKind Kind;
